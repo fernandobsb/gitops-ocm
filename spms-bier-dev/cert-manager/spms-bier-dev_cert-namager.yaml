@@ -17,7 +17,7 @@ spec:
       - CreateNamespace=true
   source:
     chart: cert-manager
-    repoURL: quay.io/jetstack/charts
+    repoURL: https://charts.jetstack.io
     targetRevision: v1.19.1  # verificar versão mais recente em https://artifacthub.io/packages/helm/cert-manager
     helm:
       releaseName: cert-manager
