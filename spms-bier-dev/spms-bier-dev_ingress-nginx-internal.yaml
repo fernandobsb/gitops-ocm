@@ -2,11 +2,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: ingress-nginx-internal
-  namespace: spms-bier-dev
+  namespace: open-cluster-management-argocd
 spec:
   project: default
   destination:
-    server: https://172.18.255.200:443?agentName=spms-bier-dev # Replace with https://<principal-external-ip:port>?agentName=<managed-cluster-name>
+    name: in-cluster
     namespace: ingress-nginx-internal
   syncPolicy:
     automated:
