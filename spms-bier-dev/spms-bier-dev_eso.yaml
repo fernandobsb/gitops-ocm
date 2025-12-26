@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   destination:
-    server: https://172.18.255.200:443?agentName=spms-bier-dev # Replace with https://<principal-external-ip:port>?agentName=<managed-cluster-name>
+    name: in-cluster
     namespace: external-secrets
   syncPolicy:
     automated:
