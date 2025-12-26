@@ -1,0 +1,29 @@
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: cert-manager
+#   namespace: argocd
+# spec:
+#   project: default
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: cert-manager
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#   source:
+#     chart: cert-manager
+#     repoURL: oci://quay.io/jetstack/charts
+#     targetRevision: v1.19.1
+#     helm:
+#       releaseName: cert-manager
+#       values: |-
+#         crds:
+#           enabled: true
+#   ignoreDifferences:
+#     - group: admissionregistration.k8s.io
+#       kind: ValidatingWebhookConfiguration
+#       jsonPointers:
+#         - /webhooks
