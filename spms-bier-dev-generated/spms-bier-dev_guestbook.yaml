@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: guestbook
-  namespace: open-cluster-management-argocd
+  namespace: spms-bier-dev # replace with managed cluster name
 spec:
   project: default
   source:
@@ -10,7 +10,7 @@ spec:
     targetRevision: HEAD
     path: guestbook
   destination:
-    name: in-cluster
+    server: https://172.18.255.200:443?agentName=spms-bier-dev # Replace with https://<principal-external-ip:port>?agentName=<managed-cluster-name>
     namespace: guestbook
   syncPolicy:
     syncOptions:
