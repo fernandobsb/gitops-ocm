@@ -1,0 +1,14 @@
+# repo-oci-quay.yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: quay-oci-helm-jetstack
+  namespace: open-cluster-management-argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  name: quay-oci-helm-jetstack
+  type: helm
+  enableOCI: "true"
+  url: quay.io/jetstack/charts
