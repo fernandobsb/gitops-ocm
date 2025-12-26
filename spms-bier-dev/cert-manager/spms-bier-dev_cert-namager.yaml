@@ -16,15 +16,17 @@ spec:
     syncOptions:
       - CreateNamespace=true
   source:
-    chart: cert-manager
     repoURL: https://charts.jetstack.io
-    targetRevision: v1.19.1  # verificar versão mais recente em https://artifacthub.io/packages/helm/cert-manager
+    chart: cert-manager
+    targetRevision: v1.14.5
     helm:
       releaseName: cert-manager
-      values: |-
+      values: |
         installCRDs: true
-        prometheus:
+        replicaCount: 2
+        podDisruptionBudget:
           enabled: true
+          minAvailable: 1
         resources:
           requests:
             cpu: 100m
@@ -32,8 +34,7 @@ spec:
           limits:
             cpu: 500m
             memory: 512Mi
-  ignoreDifferences:
-    - group: admissionregistration.k8s.io
-      kind: ValidatingWebhookConfiguration
-      jsonPointers:
-        - /webhooks
+        prometheus:
+          enabled: true
+          servicemonitor:
+            enabled: true
