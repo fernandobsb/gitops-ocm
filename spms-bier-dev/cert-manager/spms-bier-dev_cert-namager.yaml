@@ -24,7 +24,8 @@ spec:
     helm:
       releaseName: cert-manager
       values: |
-        installCRDs: true
+        crds:
+          enabled: true
         replicaCount: 2
         podDisruptionBudget:
           enabled: true
