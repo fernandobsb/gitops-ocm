@@ -3,27 +3,25 @@
 # kind: Application
 # metadata:
 #   name: cert-manager
-#   namespace: argocd
+#   namespace: open-cluster-management-argocd
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "0"
 # spec:
-#   project: default
 #   destination:
-#     server: https://kubernetes.default.svc
 #     namespace: cert-manager
+#     server: https://kubernetes.default.svc
+#   project: default
+#   source:
+#     chart: cert-manager
+#     helm:
+#       parameters:
+#         - name: crds.enabled
+#           value: 'true'
+#     repoURL: https://charts.jetstack.io
+#     targetRevision: v1.19.2
 #   syncPolicy:
 #     automated:
 #       prune: true
 #       selfHeal: true
-#   source:
-#     chart: cert-manager
-#     repoURL: oci://quay.io/jetstack/charts
-#     targetRevision: v1.19.1
-#     helm:
-#       releaseName: cert-manager
-#       values: |-
-#         crds:
-#           enabled: true
-#   ignoreDifferences:
-#     - group: admissionregistration.k8s.io
-#       kind: ValidatingWebhookConfiguration
-#       jsonPointers:
-#         - /webhooks
+#     syncOptions:
+#       - CreateNamespace=true
